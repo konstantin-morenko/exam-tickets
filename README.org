@@ -1,2 +1,26 @@
 
 Формирование билетов в LaTeX
+
+LaTeX билеты состоят из трех файлов:
+- сборочный файл (с преамбулой) :: ~tickets.tex~
+- настройки для дисциплины :: ~course.tex~
+- содержимое билетов :: ~content.tex~
+
+При этом ~python~-скрипт генерирует содержимое билетов из ~json~-файла
+
+Структура ~json~-файла:
+- settings
+  - number-of-tickets : int
+  - question
+    - prefix : str
+    - suffix : str
+  - ticket
+    - prefix : str
+    - suffix : str
+- questions
+  - [question]
+    - [variant] : str
+
+Поочередно выбирается по одному вопросу из каждого question и
+составляется в билет с префиксом и суффиксом как для вопроса, так и
+для билета

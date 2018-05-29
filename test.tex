@@ -1,14 +1,17 @@
 \documentclass[russian,utf8,columnviii,nocolumnsxix]{eskdtext}
-\usepackage[T2A]{fontenc}
-\usepackage{etoolbox}
-\usepackage{exam-tickets}
 \DeclareRobustCommand{\No}{\ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
+\usepackage[T2A]{fontenc}
+\usepackage{exam-tickets}
 \usepackage{ulem}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{enumerate}
 
 \begin{document}
 
 \ESKDstyle{empty}
-
+\setstretch{1.0}
+\newgeometry{left=1cm, right=1cm, top=0cm, bottom=0cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Common
 
@@ -21,16 +24,6 @@
   \uline{Электротехнологии и электрооборудование в сельском хозяйстве}
 }
 
-\begin{ChairExamTicket}
-  Здесь будет билет №1
-\end{ChairExamTicket}
-
-\begin{ChairExamTicket}
-  Здесь будет билет №2
-\end{ChairExamTicket}
-
-\begin{ChairExamTicket}
-  Здесь будет билет №3
-\end{ChairExamTicket}
+\input{tickets}
 
 \end{document}

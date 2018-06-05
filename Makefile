@@ -1,14 +1,18 @@
-PACKAGE_NAME = exam-tickets
-ORG_FILES = exam-tickets.org
-PACKAGE_FILES = exam-tickets.sty
-TEST_NAME = test
-COURSE = 052002-test
+PACKAGE = exam-tickets
+TICKETS = tickets
+COURSE_FILE = 052002-test.json
+OUTPUT = $(COURSE_FILE:.json=.pdf)
+TICKETS_LIST = tickets-list.tex
 
-$(TEST_NAME).pdf: $(TEST_NAME).tex $(PACKAGE_NAME).sty tickets.tex
-	pdflatex $(TEST_NAME).tex
+$(OUTPUT): $(TICKETS).tex $(PACKAGE).sty $(TICKETS_LIST)
+	latexmk -pdf $(TICKETS).tex
+	mv $(TICKETS).pdf $(OUTPUT)
 
-$(PACKAGE_NAME).sty: $(PACKAGE_NAME).org $(BUILD_DIR)
-	emacs --script org-tangle.el "$(ORG_FILES)"
+$(PACKAGE).sty: $(PACKAGE).org $(BUILD_DIR)
+	emacs --script org-tangle.el $(PACKAGE).org
 
-tickets.tex: $(COURSE).json generate-tickets.py
-	./generate-tickets.py $(COURSE).json tickets.tex
+$(TICKETS_LIST): $(COURSE_FILE) generate-tickets.py
+	./generate-tickets.py $(COURSE_FILE) $(TICKETS_LIST)
+
+clean: $(TICKETS_LIST) $(TICKETS).pdf $(PACKAGE_NAME).sty
+	rm $(TICKETS_LIST) $(TICKETS).pdf $(PACKAGE_NAME).sty

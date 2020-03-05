@@ -1,0 +1,23 @@
+\documentclass[russian,utf8,columnviii,nocolumnsxix]{eskdtext}
+\DeclareRobustCommand{\No}{\ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
+\usepackage[T2A]{fontenc}
+\usepackage{ulem}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{enumerate}
+
+\newcommand{\ExamTicketSubheader}[1]{
+  \begin{center}
+    #1
+  \end{center}
+}
+
+\begin{document}
+
+\ESKDstyle{empty}
+\setstretch{1.0}
+\newgeometry{left=1cm, right=1cm, top=1cm, bottom=1cm}
+
+\input{questions-list}
+
+\end{document}
